@@ -5,7 +5,7 @@ export function index(req, res) {
 
   let sql = "SELECT * FROM lista_tarefas";
 
-  connection(sql, function (err, rows) {
+  connection.query(sql, function (err, rows) {
     if (err) {
       res.status(500).json({ erro: "Database Error" });
       console.log("database error", err);
@@ -19,7 +19,7 @@ export function index(req, res) {
 
 export function item(req, res) {
   let sql = `SELECT * FROM lista_tarefas WHERE cod_lista = ?;`;
-  connection(sql, [req.params.id], function (err, rows) {
+  connection.query(sql, [req.params.id], function (err, rows) {
     if (err) {
       res.status(500).json({ erro: "Database Error" });
       console.log("database error", err);
